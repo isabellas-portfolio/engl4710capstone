@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f4f0e8;
+  --paper-deep: #ebe4d6;
+  --ink: #1c1914;
+  --ink-soft: #3d3830;
+  --muted: #6f675c;
+  --accent: #5c6b4d;
+  --accent-soft: #8a9a78;
+  --border: #d4cbb8;
+  --border-strong: #b8a892;
+  --highlight: #e8e0d0;
+}
+
+@theme inline {
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-serif-body);
+  --font-serif: var(--font-serif-display);
+  --font-mono: var(--font-mono-ui);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  background-image: radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      color-mix(in oklab, var(--accent-soft) 18%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--paper) 92%, #fff) 0%,
+      var(--paper) 35%,
+      var(--paper-deep) 100%
+    );
+  color: var(--ink);
+  font-family: var(--font-serif-body), ui-serif, Georgia, serif;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent-soft) 35%, var(--highlight));
+  color: var(--ink);
+}
+
+.prose-room p + p {
+  margin-top: 1.15em;
+}
