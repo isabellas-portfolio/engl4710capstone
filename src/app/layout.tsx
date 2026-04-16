@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s · Digitizing the Archive",
   },
   description:
-    "An interactive archive pairing archival documents with literary texts—interpretation, access, and human-centered digital reading.",
+    "An interactive archive pairing archival documents with literary texts, interpretation, access, and human-centered digital reading.",
 };
 
 export default function RootLayout({

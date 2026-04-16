@@ -6,8 +6,7 @@ export function Footer() {
           Compiled for scholarly circulation · 2026
         </p>
         <p className="max-w-md text-sm text-[var(--muted)]">
-          Objects described here are exemplary; replace with your corpus, rights
-          statements, and institutional credits.
+          Made by Isabella Iype, Spring 2026.
         </p>
       </div>
     </footer>

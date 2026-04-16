@@ -21,7 +21,7 @@ export function Navbar() {
             Digitizing the Archive
           </Link>
           <p className="mt-2 max-w-md text-sm leading-relaxed text-[var(--muted)]">
-            Archival documents paired with literary texts—an interactive reading
+            Archival documents paired with literary texts,  an interactive reading
             room.
           </p>
         </div>

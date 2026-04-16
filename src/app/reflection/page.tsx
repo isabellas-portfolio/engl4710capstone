@@ -13,27 +13,18 @@ export default function ReflectionPage() {
       <PageIntro
         eyebrow="Closing frame"
         title="Reflection"
-        lede="A short synthesis suited to capstone review: what the reading room model clarifies, where it strains, and how you might scale it."
+        lede="A short synthesis about the capstone project."
       />
 
       <div className="prose-room border-l-2 border-[var(--accent-soft)] pl-8 text-[var(--ink-soft)]">
         <p>
-          Taken together, the entries suggest that circulation leaves durable
-          traces—marginalia, administrative lists, corrected impressions—that
-          can be read as social texts when description stays close to the
-          object.
+          coming soon...
         </p>
         <p>
-          The limitation is familiar: digitization selects for legibility and
-          can flatten depth. Future work might pair these entries with full
-          diplomatic editions, IIIF manifests for comparative viewing, or oral
-          histories where institutional memory survives outside the catalog.
+          ...
         </p>
         <p>
-          If this archive is a room, it is one with doors. The next step is not
-          more decoration but a clearer account of whose labor built the
-          collections you cite—and how readers will be invited into the
-          conversation on fair terms.
+          ...
         </p>
       </div>
 
