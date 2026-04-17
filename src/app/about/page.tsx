@@ -21,10 +21,7 @@ export default function AboutPage() {
             Description as argument
           </h2>
           <p className="mt-4">
-            Catalog entries treat material facts, support, ink behavior, binding
-            residue as interpretive prompts. The goal is not to exhaust the
-            object but to show how careful language can hold uncertainty without
-            dissolving it into spectacle.
+            coming soon...
           </p>
         </section>
 

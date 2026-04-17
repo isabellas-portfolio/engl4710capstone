@@ -5,6 +5,15 @@ export type ArchivalSource = {
   catalogNumber: string;
 };
 
+/** Digitized facsimile served from `public/` (path begins with `/`) */
+export type ArchivalDocument = {
+  kind: "pdf" | "image";
+  src: string;
+  label?: string;
+  alt?: string;
+  caption?: string;
+};
+
 /** The literary work and quoted passage paired with the record */
 export type LiteraryPairing = {
   workTitle: string;
@@ -19,6 +28,8 @@ export type Entry = {
   title: string;
   slug: string;
   archivalSource: ArchivalSource;
+  /** Optional facsimile (PDF or image) for on-screen viewing */
+  document?: ArchivalDocument;
   literaryPairing: LiteraryPairing;
   /** Short hook for gallery cards */
   summary: string;
@@ -45,6 +56,13 @@ export const entries: Entry[] = [
       collection:
         "Massachusetts Historical Society; digitized for public access",
       catalogNumber: "MHS-CRAFT-PARKER-1851",
+    },
+    document: {
+      kind: "pdf",
+      src: "/archive/documents/william-craft-1851.pdf",
+      label: "Letter from William Craft to Theodore Parker (digitized scan)",
+      caption:
+        "Microfilm facsimile placed in the public site folder; open in a new tab if your browser does not show the embedded viewer.",
     },
     literaryPairing: {
       workTitle: "Running a Thousand Miles for Freedom",
@@ -152,20 +170,20 @@ export const entries: Entry[] = [
         "The quality of light by which we scrutinize our lives has direct bearing upon the product which we live…",
     },
     summary:
-      "“Poetry Is Not a Luxury” — close reading in relation to archival absence and the limits of official record. Lorde reframes poetry as a vital mode of knowledge-making, arguing that language is not decorative but necessary for survival, especially for those whose lives are not fully recorded in official archives.",
+      "“Poetry Is Not a Luxury” — close reading in relation to archival absence and the limits of official record. Lorde reframes poetry as a vital mode of knowledge-making, arguing that language is necessary for survival, especially for those whose lives are not fully recorded in official archives.",
     context:
       "Originally delivered as a speech and later published in Sister Outsider, “Poetry Is Not a Luxury” emerges from Black feminist thought in the 1970s. Lorde writes against the idea that poetry is indulgent or secondary, instead positioning it as a primary tool for articulating experiences that dominant systems, political, medical, archival, fail to capture. Her work speaks from and to communities historically excluded from institutional records, where silence is not accidental but produced.",
     excerpt:
       "“For women, then, poetry is not a luxury. It is a vital necessity of our existence.” “…the transformation of silence into language and action…”",
     closeReading: [
       "Lorde’s insistence that poetry is “not a luxury” challenges a hierarchy that places official knowledge, documents, records, data, above expressive or emotional forms of writing. The term “luxury” suggests excess, something optional; by rejecting it, Lorde redefines poetry as foundational, a means of survival rather than embellishment.",
-      "Her emphasis on “transformation” signals process rather than product. Silence is not simply broken; it is worked through, shaped into language that can be shared and acted upon. This framing complicates the idea of the archive as a passive repository. If certain lives and experiences are never recorded, then the absence is not neutral, it is enforced. Poetry becomes a method of producing what the archive lacks.",
+      "Her emphasis on “transformation” signals process rather than product. Silence is worked through, shaped into language that can be shared and acted upon. This framing complicates the idea of the archive as a passive repository. If certain lives and experiences are never recorded, then the absence is enforced. Poetry becomes a method of producing what the archive lacks.",
       "Unlike official documents, which often rely on abstraction and distance, Lorde’s language is intimate and embodied. It foregrounds feeling as a form of knowledge, insisting that what is deeply felt is also intellectually significant. In this way, her essay reorients what counts as evidence: not only written records, but lived experience, memory, and emotion.",
     ],
     literaryConnection:
       "If the archive is defined by what is preserved, Lorde asks us to consider what has been systematically left out, and how those absences can be addressed. Her essay provides a framework for reading documents and the silences surrounding them. Where institutional archives often fail to record marginalized lives, poetry becomes a parallel archive, one that captures interiority, emotion, and lived experience. Rather than filling gaps with objective data, Lorde proposes a different kind of intervention, one rooted in feeling, imagination, and self-definition. Her work suggests that meaning does not originate in the archive itself, but in the act of giving language to what has been excluded.",
     significance:
-      "This entry reframes the archive by shifting attention from what is present to what is absent. Through Lorde’s argument, the project positions poetry as a necessary response to archival silence, one that does not merely supplement the record, but challenges its authority. In the context of a digital interface, this raises questions about how absence can be represented and engaged. By incorporating gaps, fragmentation, or moments of intentional incompleteness, the site can reflect Lorde’s insight that not all histories are recoverable through documents alone. Instead, interpretation becomes an act of creation, transforming silence into something that can be seen, read, and felt.",
+      "This entry reframes the archive by shifting attention from what is present to what is absent. Through Lorde’s argument, the project positions poetry as a necessary response to archival silence, one that challenges the authority of the archive. In the context of a digital interface, this raises questions about how absence can be represented and engaged. By incorporating gaps, fragmentation, or moments of intentional incompleteness, the site can reflect Lorde’s insight that not all histories are recoverable through documents alone. Instead, interpretation becomes an act of creation, transforming silence into something that can be seen, read, and felt.",
   },
 ];
 

@@ -9,7 +9,7 @@ export default function HomePage() {
       >
         <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
           <p className="font-mono text-[0.65rem] uppercase tracking-[0.35em] text-[var(--muted)]">
-            Welcome
+            Introducing...
           </p>
           <h1
             id="hero-title"
@@ -37,7 +37,7 @@ export default function HomePage() {
               href="/about"
               className="inline-flex items-center justify-center px-2 py-3 font-mono text-xs uppercase tracking-[0.2em] text-[var(--ink-soft)] underline decoration-[var(--border-strong)] decoration-1 underline-offset-[6px] transition hover:text-[var(--ink)]"
             >
-              How we work
+              How it works
             </Link>
           </div>
         </div>

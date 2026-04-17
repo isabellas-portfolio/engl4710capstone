@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ArchivalDocumentViewer } from "@/components/ArchivalDocumentViewer";
 import { LiteraryPairSection } from "@/components/LiteraryPairSection";
 import type { Entry } from "@/data/entries";
 
@@ -69,6 +70,10 @@ export function EntryLayout({ entry, children }: EntryLayoutProps) {
           </div>
         </dl>
       </header>
+
+      {entry.document ? (
+        <ArchivalDocumentViewer document={entry.document} />
+      ) : null}
 
       <Section id="summary-heading" kicker="Overview" title="Summary">
         <p>{entry.summary}</p>
