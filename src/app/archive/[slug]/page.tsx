@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { EntryLayout } from "@/components/EntryLayout";
+import { ArchiveEntryReader } from "@/components/ArchiveEntryReader";
 import { entries, getEntryBySlug, type Entry } from "@/data/entries";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -66,7 +66,7 @@ export default async function ArchiveEntryPage({ params }: Props) {
   if (!entry) notFound();
 
   return (
-    <EntryLayout entry={entry}>
+    <ArchiveEntryReader entry={entry}>
       <PrevNext entry={entry} />
       <p className="mt-10 text-center">
         <Link
@@ -76,6 +76,6 @@ export default async function ArchiveEntryPage({ params }: Props) {
           Return to gallery
         </Link>
       </p>
-    </EntryLayout>
+    </ArchiveEntryReader>
   );
 }

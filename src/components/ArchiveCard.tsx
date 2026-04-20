@@ -14,16 +14,8 @@ export function ArchiveCard({ entry }: ArchiveCardProps) {
       href={`/archive/${entry.slug}`}
       className="group relative flex flex-col overflow-hidden border border-[var(--border)] bg-[color-mix(in_oklab,var(--paper)_90%,#fff)] transition duration-300 hover:border-[var(--border-strong)] hover:shadow-[0_16px_50px_-28px_rgba(28,25,20,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
     >
-      <div className="relative aspect-[4/3] bg-[var(--paper-deep)] bg-[linear-gradient(145deg,var(--highlight),var(--paper-deep))]">
-        {entry.document?.kind === "image" ? (
-          // eslint-disable-next-line @next/next/no-img-element -- public paths from entry data
-          <img
-            src={entry.document.src}
-            alt={entry.document.alt ?? entry.title}
-            className="absolute inset-0 h-full w-full object-cover object-top"
-          />
-        ) : null}
-        <div className="relative flex h-full flex-col justify-between p-6">
+      <div className="aspect-[4/3] bg-[var(--paper-deep)] bg-[linear-gradient(145deg,var(--highlight),var(--paper-deep))]">
+        <div className="flex h-full flex-col justify-between p-6">
           <span className="inline-block max-w-[12rem] font-serif text-xl leading-snug text-[var(--ink)] transition group-hover:text-[var(--accent)]">
             {entry.title}
           </span>

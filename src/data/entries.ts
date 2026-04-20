@@ -1,8 +1,16 @@
+import { blackPrinceTranscriptBlocks } from "@/data/blackPrinceTranscript";
+
 export type ArchivalSource = {
   date: string;
   medium: string;
   collection: string;
   catalogNumber: string;
+};
+
+/** Paragraph or excerpt line for display beside a facsimile */
+export type TranscriptBlock = {
+  kind: "prose" | "excerpt";
+  text: string;
 };
 
 /** Digitized facsimile served from `public/` (path begins with `/`) */
@@ -12,6 +20,8 @@ export type ArchivalDocument = {
   label?: string;
   alt?: string;
   caption?: string;
+  /** Readable transcript shown with image (typically `kind: "image"`) */
+  transcriptBlocks?: TranscriptBlock[];
 };
 
 /** The literary work and quoted passage paired with the record */
@@ -22,6 +32,13 @@ export type LiteraryPairing = {
   quotedExcerpt: string;
   /** When true, excerpt is shown as descriptive prose (no quotation marks) */
   excerptIsParaphrase?: boolean;
+};
+
+/** Optional three-part synthesis for the reading-room footer */
+export type EntrySynthesis = {
+  whyPairing: string;
+  juxtaposition: string;
+  beyondArchive: string;
 };
 
 export type Entry = {
@@ -43,12 +60,64 @@ export type Entry = {
   literaryConnection: string;
   /** Why the pairing matters for interpretation or public DH */
   significance: string;
+  /** Synthesis prompts answered in the reading-room footer */
+  synthesis?: EntrySynthesis;
 };
 
 export const entries: Entry[] = [
   {
+    slug: "bradstreet-household-cluster-a",
+    title: "Bradstreet Household, Cluster A",
+    archivalSource: {
+      date: "1662–1666",
+      medium: "Manuscript poem; court record; legal archive",
+      collection:
+        "Massachusetts colonial archives; Essex County Quarterly Court Records",
+      catalogNumber: "ESSEX-QUARTERLY-BRADSTREET-1660",
+    },
+    document: {
+      kind: "image",
+      src: "/archive/documents/bradstreet-court-record-page.png",
+      label: "Essex County court record page (William Young entry highlighted)",
+      alt: "Printed court records page showing references to William Young, with highlighted lines near the center of the page.",
+      caption:
+        "Digitized court-record page associated with the Bradstreet household context; includes highlighted references for readability.",
+    },
+    literaryPairing: {
+      workTitle: "Here Follows Some Verses Upon the Burning of Our House",
+      author: "Anne Bradstreet",
+      sourceNote: "from The Tenth Muse Lately Sprung Up in America, 1678",
+      quotedExcerpt:
+        "And when I could no longer look, I blest His name that gave and took…",
+    },
+    summary:
+      "Anne Bradstreet, ‘Here Follows Some Verses Upon the Burning of Our House’ — close reading in relation to court records of William Young, as discussed by Christy Pottroff. A domestic lyric of loss and spiritual reflection is read alongside a court record documenting the punishment and disappearance of an indentured servant in the Bradstreet household, revealing contrasting archival traces of desire, discipline, and power.",
+    context:
+      "Anne Bradstreet’s poem, copied from a loose paper after the burning of her home in 1666, reflects on material loss through a Puritan spiritual framework. The poem survives as part of a literary archive that preserves Bradstreet’s voice, interiority, and emotional life. At the same time, the Bradstreet household appears in legal archives through the Essex County court records, which document the case of William Young, an indentured servant accused of sexual misconduct. As analyzed by Christy Pottroff, these records reveal how systems of discipline and labor structured the lives of those within the same domestic space. These materials exist in separate archival forms, poetry and legal record, yet refer to overlapping histories that are rarely read together.",
+    excerpt:
+      "Bradstreet: “And when I could no longer look,\nI blest His name that gave and took…” Court record: “He may have been whipped once, but not twice… [he] ran away and forfeited his bond…”",
+    closeReading: [
+      "Bradstreet’s poem transforms the destruction of her home into a moment of spiritual reflection. The loss of material goods is reframed through religious submission, as she relinquishes attachment to earthly possessions in favor of divine order. The poem centers an interior experience, grief, acceptance, and faith, rendered through controlled, meditative language.",
+      "In contrast, the court record of William Young offers a starkly different kind of archive. His presence is mediated entirely through legal language, accusation, punishment, disappearance. Where Bradstreet’s voice is preserved and elevated, Young’s is absent. His experience enters the archive only as a problem to be managed, his actions framed as deviance, his punishment recorded as procedure.",
+      "Reading these documents together reveals the uneven distribution of voice within the archive. Desire, for Bradstreet, is sanctified within marriage and expressed through poetry; for Young, it is criminalized and recorded as transgression. The same household produces radically different archival traces depending on one’s position within it.",
+      "This entry employs a method of diagonal reading, reading across archival forms and genres to uncover relationships that are not explicitly documented. Rather than treating the poem and the court record as separate, this approach places them in tension, allowing each to illuminate what the other obscures. Bradstreet’s poem does not mention Young, and the court record does not acknowledge her, yet both are shaped by the same domestic and social structures. Through diagonal reading, the archive expands beyond isolated documents into a network of partial, intersecting histories. What emerges is a recognition of the archive’s fragmentation and its embedded hierarchies of visibility.",
+    ],
+    literaryConnection:
+      "Bradstreet’s poem elevates personal loss into spiritual meaning, preserving her voice within the literary canon. When read alongside the court record discussed by Christy Pottroff, however, the poem becomes part of a larger archival landscape shaped by power. The domestic space that the poem mourns is also a site of labor, discipline, and surveillance. While Bradstreet transforms her experience into language that endures, Young’s experience is reduced to a brief legal trace, ending in disappearance. The juxtaposition reveals how literary and legal archives operate differently, one preserves interiority, the other enforces order. Diagonal reading makes visible these asymmetries, suggesting that understanding the archive requires moving between forms, voices, and silences.",
+    significance:
+      "This entry demonstrates how archives do not simply record history, but structure whose experiences are visible and whose are erased. By pairing Bradstreet’s poem with legal records from the same household, the project highlights how literary expression and institutional documentation produce unequal forms of presence. In a digital interface, this pairing allows users to navigate between these materials, making visible the gaps and tensions that exist within the archive. The method of diagonal reading becomes a tool for uncovering hidden relationships and for questioning the completeness of any single document. Ultimately, this entry reinforces the project’s broader claim, that archives are fragmented and shaped by power, and that meaning emerges through the act of reading across their divisions.",
+    synthesis: {
+      whyPairing:
+        "Placing Bradstreet’s poem beside the court record makes legible how the same household produced radically different traces—lyric interiority versus legal disappearance.",
+      juxtaposition:
+        "The juxtaposition exposes asymmetry: one voice is preserved and elevated in print; another is reduced to procedure and disappearance.",
+      beyondArchive:
+        "Neither document alone names the whole story; diagonal reading is required to perceive overlapping structures of domestic power the records do not explicitly link.",
+    },
+  },
+  {
     slug: "letter-william-craft-theodore-parker",
-    title: "Letter from William Craft to Theodore Parker",
+    title: "Letter from William Craft to Theodore Parker, Cluster A",
     archivalSource: {
       date: "January 24, 1851",
       medium:
@@ -85,6 +154,14 @@ export const entries: Entry[] = [
       "The memoir expands what the letter condenses. Where the narrative traces the lived experience of being treated as “chattel,” the letter isolates and rejects the underlying logic of that condition. The legal language of ownership in the memoir, “belongs,” “possess nothing”, is given new urgency by the letter’s refusal to accept freedom through purchase. Together, they reveal a consistent argument: that the violence of slavery is inseparable from the idea that a person can be owned at all.",
     significance:
       "This entry demonstrates how archival documents can sharpen and even transform the interpretation of literary texts. The letter reframes Running a Thousand Miles for Freedom as not only a narrative of escape, but as a philosophical rejection of property itself. By presenting the letter alongside the memoir, the archive highlights how different forms, private correspondence and published narrative, participate in the same intellectual and political project. It also shows how digitization, by preserving material traces like handwriting and degradation, allows readers to encounter historical arguments as embodied, situated acts rather than abstract ideas.",
+    synthesis: {
+      whyPairing:
+        "The private letter refuses purchase of freedom while the memoir names the logic of ownership—together they show continuity between intimate refusal and printed argument.",
+      juxtaposition:
+        "Side by side, bureaucratic coercion in the letter meets the memoir’s legal vocabulary of “belongs,” sharpening how property thinking shapes both forms.",
+      beyondArchive:
+        "The letter’s material constraints, grain and handwriting, carry argument the printed memoir cannot duplicate; the archive’s texture is part of meaning.",
+    },
   },
   {
     slug: "apology-resolution-cluster-b",
@@ -94,6 +171,13 @@ export const entries: Entry[] = [
       medium: "Printed Congressional resolution; legislative text",
       collection: "U.S. Congressional Record; digitized federal archive",
       catalogNumber: "USCR-APOLOGY-2009",
+    },
+    document: {
+      kind: "pdf",
+      src: "/archive/documents/congressional-apology-2009.pdf",
+      label: "U.S. Congressional apology to Native peoples (digitized resolution)",
+      caption:
+        "Digitized facsimile of the joint resolution text; open in a new tab if the embedded viewer does not load.",
     },
     literaryPairing: {
       workTitle: "Whereas",
@@ -117,16 +201,33 @@ export const entries: Entry[] = [
       "Long Soldier takes the language of the resolution as both material and subject, breaking apart its form to expose its limitations. Where the government document relies on continuity and control, her poetry introduces fragmentation, spacing, and interruption. She resists the passive flow of “Whereas” by isolating words, reordering phrases, and refusing the closure that the original text enforces. In doing so, she transforms the resolution from a fixed legal artifact into something unstable and contested. Her work reveals that meaning does not reside in the document itself, but emerges through how it is read, felt, and rearticulated. The poem does not simply respond to the archive, it actively reworks it, insisting on presence where the original text obscures it.",
     significance:
       "This entry demonstrates how official archives, particularly those produced by state power, can obscure as much as they reveal. By pairing the Congressional resolution with Long Soldier’s poetic intervention, the project highlights how literary form can expose the limits of bureaucratic language and reassert marginalized perspectives. In a digital interface, this pairing allows users to move between document and interpretation, making visible the gap between acknowledgment and accountability. The archive is no longer presented as neutral or complete, but as a site of negotiation, one that requires active reading to uncover its contradictions.",
+    synthesis: {
+      whyPairing:
+        "Formal government “Whereas” prose and Long Soldier’s broken lines show the same text as both closure and raw material for resistance.",
+      juxtaposition:
+        "The side-by-side view makes form visible: continuous legislative syntax versus spacing, interruption, and feeling-as-language.",
+      beyondArchive:
+        "The state document cannot show what it costs to read it; the poem insists on embodied response where the record claims neutrality.",
+    },
   },
   {
     slug: "black-prince-logbook-cluster-d",
-    title: "Black Prince Logbook, Cluster D",
+    title: "Black Prince Logbook, Cluster C",
     archivalSource: {
       date: "1762–1763",
       medium: "Handwritten ship log; maritime record",
       collection:
         "Logbook of the Bristol slave ship Black Prince; transatlantic slave trade archives",
       catalogNumber: "BP-LOG-1762-63",
+    },
+    document: {
+      kind: "image",
+      src: "/archive/documents/black-prince-logbook-page.png",
+      label: "Page from the Black Prince log (facsimile)",
+      alt: "Handwritten logbook page: heading ‘Transactions on board the Black Prince lying in Annamaboe Road,’ with dates in a left column and dense cursive entries for each day.",
+      caption:
+        "Digitized facsimile of a log page (PNG). Source image may include rights markings from the holding institution. Transcript at right (or below on small screens) is editorial prose and quoted log matter for legibility, not a diplomatic edition of the manuscript.",
+      transcriptBlocks: [...blackPrinceTranscriptBlocks],
     },
     literaryPairing: {
       workTitle: "Wake",
@@ -152,10 +253,18 @@ export const entries: Entry[] = [
       "Wake begins from archival fragments like the Black Prince logbook, records that acknowledge events such as uprisings but render them incomplete and impersonal. Hall takes these traces as points of departure, using narrative and visual form to imagine the lives and experiences that the archive cannot fully preserve. Where the logbook compresses resistance into brief entries, Wake expands it into sustained narrative, restoring depth, agency, and emotion. The graphic novel format is particularly significant: images allow Hall to depict what the archive leaves undescribed, creating presence where the record offers only absence. Rather than treating the archive as authoritative, Hall exposes its limitations. The logbook’s gaps, its lack of names, voices, and interiority, become spaces for interpretation. In this way, Wake does not simply supplement the archive but challenges its structure, demonstrating that historical understanding requires more than documentation; it requires imaginative reconstruction.",
     significance:
       "This entry highlights how archives of the transatlantic slave trade both preserve and distort history. The Black Prince logbook provides a continuous record of events, yet its language and structure minimize the human experiences it documents. By pairing this record with Wake, the project reveals how narrative and visual storytelling can recover dimensions of history that the archive suppresses. In a digital interface, this contrast can be made explicit: repetitive log entries give way to expanded narrative, allowing users to see how meaning emerges through interpretation. The entry reinforces a central claim of the project, that archives do not fully contain history, but instead offer fragments shaped by power, which must be actively read, questioned, and reimagined.",
+    synthesis: {
+      whyPairing:
+        "Hall’s work begins where the log leaves off—with fragments that beg for reconstruction of lives the ledger refuses to name.",
+      juxtaposition:
+        "Compressed ship entries beside expanded narrative and image underscore what omission and genre do to the past.",
+      beyondArchive:
+        "The log cannot hold interior life or refusal as felt experience; Wake supplies presence and care the record structurally excludes.",
+    },
   },
   {
     slug: "silence-and-survival-cluster-c",
-    title: "Silence and Survival, Cluster C",
+    title: "Silence and Survival, Cluster D",
     archivalSource: {
       date: "1977",
       medium: "Essay; published speech",
@@ -184,6 +293,14 @@ export const entries: Entry[] = [
       "If the archive is defined by what is preserved, Lorde asks us to consider what has been systematically left out, and how those absences can be addressed. Her essay provides a framework for reading documents and the silences surrounding them. Where institutional archives often fail to record marginalized lives, poetry becomes a parallel archive, one that captures interiority, emotion, and lived experience. Rather than filling gaps with objective data, Lorde proposes a different kind of intervention, one rooted in feeling, imagination, and self-definition. Her work suggests that meaning does not originate in the archive itself, but in the act of giving language to what has been excluded.",
     significance:
       "This entry reframes the archive by shifting attention from what is present to what is absent. Through Lorde’s argument, the project positions poetry as a necessary response to archival silence, one that challenges the authority of the archive. In the context of a digital interface, this raises questions about how absence can be represented and engaged. By incorporating gaps, fragmentation, or moments of intentional incompleteness, the site can reflect Lorde’s insight that not all histories are recoverable through documents alone. Instead, interpretation becomes an act of creation, transforming silence into something that can be seen, read, and felt.",
+    synthesis: {
+      whyPairing:
+        "Lorde names poetry as survival beside the kinds of evidence institutions privilege—pairing makes the hierarchy of genres visible.",
+      juxtaposition:
+        "Putting lyrical insistence next to archival lacunae clarifies how silence is produced, not accidental.",
+      beyondArchive:
+        "Official records cannot register feeling as knowledge; Lorde’s essay supplies a method for reading what files leave out.",
+    },
   },
 ];
 
